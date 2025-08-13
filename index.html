@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vikas Jain – Portfolio</title>
+  <meta name="description" content="Software Engineer portfolio — projects, skills, and contact." />
+  <meta property="og:title" content="Vikas Jain – Portfolio" />
+  <meta property="og:description" content="Projects, skills, and ways to get in touch." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1220;          /* deep navy */
+      --panel: #0f172a;       /* slate-900 */
+      --muted: #94a3b8;       /* slate-400 */
+      --text: #e2e8f0;        /* slate-200 */
+      --brand: #f59e0b;       /* amber-500 */
+      --brand-2: #22d3ee;     /* cyan-400 */
+      --ring: rgba(34, 211, 238, .45);
+      --card: #111827;        /* gray-900 */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(34,211,238,.12), transparent),
+                  radial-gradient(800px 500px at -10% 20%, rgba(245,158,11,.12), transparent),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--brand-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(10,15,25,.8), rgba(10,15,25,.35));
+      border-bottom: 1px solid rgba(148,163,184,.12);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing:.2px; }
+    .badge { width: 10px; height: 10px; border-radius: 999px; background: linear-gradient(45deg, var(--brand), var(--brand-2)); box-shadow: 0 0 0 4px rgba(34,211,238,.15); }
+    .nav a { margin-left: 18px; color: var(--text); opacity: .85; font-weight: 500; }
+    .nav a:hover { opacity: 1; }
+    .theme-toggle { border: 1px solid rgba(148,163,184,.25); background: #0a0f19; color: var(--text); padding: 8px 12px; border-radius: 999px; cursor: pointer; }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1.25fr .75fr; gap: 28px; padding: 72px 0 36px; align-items: center; }
+    .hero h1 { font-size: clamp(32px, 4vw, 52px); line-height: 1.1; margin: 0 0 16px; }
+    .accent { background: linear-gradient(45deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p { color: var(--muted); font-size: 18px; }
+    .cta { display: flex; gap: 12px; margin-top: 18px; }
+    .btn { padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(148,163,184,.25); background: var(--panel); color: var(--text); box-shadow: var(--shadow); font-weight: 600; }
+    .btn.primary { background: linear-gradient(90deg, var(--brand), var(--brand-2)); color: #0b1220; border: none; }
+    .hero-card { background: rgba(17,24,39,.75); border: 1px solid rgba(148,163,184,.18); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .hero-card img { width: 100%; border-radius: 12px; display: block; }
+
+    /* Section */
+    section { padding: 28px 0 52px; }
+    .section-title { font-size: 24px; margin: 0 0 18px; letter-spacing: .3px; }
+    .muted { color: var(--muted); }
+
+    /* Skills */
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { padding: 8px 12px; border: 1px solid rgba(148,163,184,.25); border-radius: 999px; background: rgba(15,23,42,.6); }
+
+    /* Projects */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { background: var(--card); border: 1px solid rgba(148,163,184,.18); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,.45); }
+    .card img { width: 100%; height: 170px; object-fit: cover; display: block; }
+    .card-body { padding: 14px; }
+    .card-title { font-weight: 700; margin: 0 0 6px; }
+    .card-text { color: var(--muted); font-size: 14px; }
+    .pill { display: inline-block; margin-top: 10px; padding: 6px 10px; font-size: 12px; border-radius: 999px; background: rgba(34,211,238,.12); border: 1px solid rgba(34,211,238,.4); }
+
+    /* Timeline */
+    .timeline { border-left: 2px dashed rgba(148,163,184,.3); margin-left: 8px; padding-left: 18px; }
+    .t-item { margin-bottom: 16px; }
+    .t-item h4 { margin: 0; }
+    .t-time { font-size: 12px; color: var(--muted); }
+
+    /* Contact */
+    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    input, textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(148,163,184,.25); background: rgba(15,23,42,.6); color: var(--text); }
+    label { font-size: 14px; color: var(--muted); }
+    form .btn { width: max-content; }
+
+    footer { padding: 24px 0 40px; color: var(--muted); text-align: center; font-size: 14px; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .contact { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="badge"></span> <span>Vikas Jain</span></div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">Toggle Theme</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div>
+        <h1>Building reliable <span class="accent">AI & C++</span> solutions for the real world.</h1>
+        <p class="muted">17+ years in C++. Currently pivoting into Applied AI/GenAI — shipping tools, automations, and delightful user experiences.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="mailto:hello@example.com">Hire Me</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <img alt="Preview" src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1400&auto=format&fit=crop" />
+        <div class="muted" style="margin-top:8px;font-size:12px;">Preview of a recent project — inference dashboard</div>
+      </aside>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1200&auto=format&fit=crop" alt="Dashboard" />
+          <div class="card-body">
+            <h3 class="card-title">Realtime Slot Engine (Unity)</h3>
+            <p class="card-text">State-machine driven reel slot with Addressables, feature factories, and caching for 60 FPS on mobile.</p>
+            <span class="pill">Unity/C# · VContainer</span>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" alt="AI" />
+          <div class="card-body">
+            <h3 class="card-title">Reddit → Reels Auto-Publisher</h3>
+            <p class="card-text">Pipeline that grabs viral Reddit threads, turns them into short videos with TTS, and posts daily.</p>
+            <span class="pill">Python · TTS · FFmpeg</span>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Code" />
+          <div class="card-body">
+            <h3 class="card-title">ATS Resume Optimizer</h3>
+            <p class="card-text">CLI/web tool that rewrites resumes for specific JDs, extracting metrics and skills with LLMs.</p>
+            <span class="pill">Python · LLMs · FastAPI</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="section-title">Skills & Tools</h2>
+      <div class="chips">
+        <span class="chip">C++ (17 yrs)</span>
+        <span class="chip">Python</span>
+        <span class="chip">Unity · C#</span>
+        <span class="chip">GenAI / Prompting</span>
+        <span class="chip">State Machines</span>
+        <span class="chip">Addressables</span>
+        <span class="chip">FastAPI</span>
+        <span class="chip">AWS / GCP</span>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <h4>Senior Software Engineer — C++</h4>
+          <div class="t-time">2010 – 2024</div>
+          <p class="muted">Built high-performance systems with a focus on reliability and maintainability.</p>
+        </div>
+        <div class="t-item">
+          <h4>AI/Automation Projects</h4>
+          <div class="t-time">2024 – Present</div>
+          <p class="muted">Shifting to applied AI — automation pipelines, content generation, and analytics dashboards.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact">
+        <form id="contactForm" onsubmit="sendMail(event)">
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" required>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="How can I help?" required></textarea>
+          <button class="btn primary" type="submit">Send</button>
+        </form>
+        <aside class="hero-card">
+          <h3 style="margin-top:0">Let’s build something great</h3>
+          <p class="muted">Prefer email? <a href="mailto:hello@example.com">hello@example.com</a><br/>Also on <a href="#">LinkedIn</a> · <a href="#">GitHub</a></p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Vikas Jain · Built with GitHub Pages
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact (opens mail client with prefilled body)
+    function sendMail(e){
+      e.preventDefault();
+      const n = document.getElementById('name').value.trim();
+      const m = document.getElementById('message').value.trim();
+      const em = document.getElementById('email').value.trim();
+      const subject = encodeURIComponent('Portfolio Inquiry from ' + n);
+      const body = encodeURIComponent(m + '\n\nFrom: ' + n + ' (' + em + ')');
+      window.location.href = 'mailto:hello@example.com?subject=' + subject + '&body=' + body;
+    }
+
+    // Theme toggle (switch brand colors)
+    const btn = document.getElementById('themeBtn');
+    let alt = false;
+    btn.addEventListener('click', () => {
+      alt = !alt;
+      document.documentElement.style.setProperty('--brand', alt ? '#22d3ee' : '#f59e0b');
+      document.documentElement.style.setProperty('--brand-2', alt ? '#f59e0b' : '#22d3ee');
+      document.documentElement.style.setProperty('--ring', alt ? 'rgba(245,158,11,.45)' : 'rgba(34,211,238,.45)');
+    });
+  </script>
+</body>
+</html>
